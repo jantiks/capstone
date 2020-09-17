@@ -52,10 +52,18 @@ df_gm["Returns"] = ((df_gm["Close"])/df_gm["Close"].shift(periods=1)) - 1
 # df_gm["Returns"].plot.box()
 # plt.legend(["tesla","ford","gm"])
 # plt.show()
-df_tesla["daily_cumulative_return"] = ( 1 + df_tesla["Returns"] ).cumprod()
-df_ford["daily_cumulative_return"] = ( 1 + df_ford["Returns"] ).cumprod()
-df_gm["daily_cumulative_return"] = ( 1 + df_gm["Returns"] ).cumprod()
-df_tesla["daily_cumulative_return"].plot()
-df_ford["daily_cumulative_return"].plot()
-df_gm["daily_cumulative_return"].plot()
-plt.show()
+# df_tesla["daily_cumulative_return"] = ( 1 + df_tesla["Returns"] ).cumprod()
+# df_ford["daily_cumulative_return"] = ( 1 + df_ford["Returns"] ).cumprod()
+# df_gm["daily_cumulative_return"] = ( 1 + df_gm["Returns"] ).cumprod()
+# df_tesla["daily_cumulative_return"].plot()
+# df_ford["daily_cumulative_return"].plot()
+# df_gm["daily_cumulative_return"].plot()
+# plt.show()
+# df_gm["Camulative returnes"] = df_gm["Close"]
+# for i in range(0,df_gm.index.size):
+#     df_gm["Camulative returnes"][i] = df_gm["Close"][i] / df_gm["Close"][0]
+# print(df_gm)
+# df_tesla["Camulative returnes"] = df_tesla["Returns"]
+# for i in range(0,df_tesla.index.size):
+#     df_tesla["Camulative returnes"][i] = df_tesla["Close"][i] / df_tesla["Close"][0]
+# print(df_tesla)
