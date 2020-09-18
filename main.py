@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import statsmodels.api as sm
 df_tesla = pd.read_csv("Tesla_Stock.csv",index_col="Date", parse_dates=True)
 df_ford = pd.read_csv("Ford_Stock.csv",index_col="Date",parse_dates=True)
 df_gm = pd.read_csv("GM_Stock.csv",index_col="Date", parse_dates=True)
@@ -38,9 +39,9 @@ df_gm = pd.read_csv("GM_Stock.csv",index_col="Date", parse_dates=True)
 # df_scater["Gm open"] = df_gm["Open"]
 # scatter_matrix(df_scater)
 # plt.show()
-df_tesla["Returns"] = ((df_tesla["Close"])/df_tesla["Close"].shift(periods=1)) - 1
-df_ford["Returns"] = ((df_ford["Close"])/df_ford["Close"].shift(periods=1)) - 1
-df_gm["Returns"] = ((df_gm["Close"])/df_gm["Close"].shift(periods=1)) - 1
+# df_tesla["Returns"] = ((df_tesla["Close"])/df_tesla["Close"].shift(periods=1)) - 1
+# df_ford["Returns"] = ((df_ford["Close"])/df_ford["Close"].shift(periods=1)) - 1
+# df_gm["Returns"] = ((df_gm["Close"])/df_gm["Close"].shift(periods=1)) - 1
 # df_tesla["Returns"].hist(bins=100)
 # df_ford["Returns"].hist(bins=100)
 # df_gm["Returns"].hist(bins=100)
@@ -67,3 +68,7 @@ df_gm["Returns"] = ((df_gm["Close"])/df_gm["Close"].shift(periods=1)) - 1
 # for i in range(0,df_tesla.index.size):
 #     df_tesla["Camulative returnes"][i] = df_tesla["Close"][i] / df_tesla["Close"][0]
 # print(df_tesla)
+close_cycle , close_trend = sm.tsa.filters.hpfilter(df_tesla["Close"])
+df_tesla["trend"] = close_trend
+df_tesla[["Close","trend"]].loc["2016-01-01":"2016-04-01"].plot()
+plt.show()
